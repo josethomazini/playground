@@ -7,6 +7,7 @@ async function query(query) {
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
     port: process.env.POSTGRES_PORT,
+    ssl: process.env.NODE_ENV === "development" ? false : true,
   });
 
   try {
