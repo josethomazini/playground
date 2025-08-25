@@ -9,9 +9,15 @@ async function query(query) {
     port: process.env.POSTGRES_PORT,
   });
   await client.connect();
-  const result = await client.query(query);
-  await client.end();
-  return result;
+
+  try {
+    const result = await client.query(query);
+    return result;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await client.end();
+  }
 }
 
 module.exports = {
