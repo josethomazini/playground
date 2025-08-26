@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTMX</title>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.10"
+      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>Submit Methods</h1>
+
+    <button
+        hx-get="http://localhost:3000/get"
+        hx-target="#get-response"
+    >GET</button>
+
+    <button
+        hx-post="http://localhost:3000/post"
+        hx-target="#post-response"
+    >POST</button>
+
+    <button
+        hx-put="http://localhost:3000/put"
+        hx-target="#put-response"
+    >PUT</button>
+
+    <button
+        hx-patch="http://localhost:3000/patch"
+        hx-target="#patch-response"
+    >PATCH</button>
+
+    <button
+        hx-delete="http://localhost:3000/delete"
+        hx-target="#delete-response"
+    >DELETE</button>
+
+    <p>
+        GET: <span id="get-response" />
+    </p>
+    <p>
+        POST: <span id="post-response" />
+    </p>
+    <p>
+        PUT: <span id="put-response" />
+    </p>
+    <p>
+        PATCH: <span id="patch-response" />
+    </p>
+    <p>
+        DELETE: <span id="delete-response" />
+    </p>
+
+    <hr />
+
+    <h1>Trigger</h1>
+
+    <input
+        name="q"
+        hx-get="http://localhost:3000/trigger"
+        hx-trigger="keyup changed delay:300ms"
+        hx-target="#trigger-response"
+        type="text" />
+
+    <p>
+        TRIGGER: <span id="trigger-response" />
+    </p>
+
+    <hr />
+
+    <h1>Once</h1>
+
+    <button
+        hx-get="http://localhost:3000/once"
+        hx-trigger="click once"
+        hx-target="#once-response"
+        type="text">Click once</button>
+
+    <p>
+        ONCE: <span id="once-response" />
+    </p>
+
+    <hr />
+
+    <h1>Delay</h1>
+
+    <button
+        hx-on="click: document.querySelector('#delay-response').innerHTML = ''"
+        hx-get="http://localhost:3000/delay"
+        hx-trigger="click delay:2000ms"
+        hx-target="#delay-response"
+        type="text">Delay 2 seconds</button>
+    <p>
+        Delay: <span id="delay-response" />
+    </p>
+
+    <hr />
+
+    <h1>External</h1>
+
+    <button
+        hx-get="http://localhost:3000/random_name"
+        hx-trigger="click, click from:#both_button"
+        hx-target="#name-response"
+        type="text">Get name</button>
+
+    <button
+        hx-get="http://localhost:3000/random_color"
+        hx-trigger="click, click from:#both_button"
+        hx-target="#color-response"
+        type="text">Get color</button>
+    
+    <button
+        id="both_button"
+        hx-get="http://localhost:3000/random_color"
+        hx-trigger="click"
+        hx-target="#color-response"
+        type="text">Get both</button>
+
+    <p>
+        Name: <span id="name-response" />
+    </p>
+
+    <p>
+        Color: <span id="color-response" />
+    </p>
+
+    <hr />
+
+  </body>
+</html>
